@@ -2,11 +2,11 @@
 
 return [
 
-    'site_title' => 'Sign',
+    'site_title' => 'Læknahúsið',
 
-    'site_description' => 'Sign',
+    'site_description' => 'Læknahúsið',
 
-    'company_name' => 'Sign',
+    'company_name' => 'Læknahúsið',
     'company_email' => 'test@netvistun.is',
 
     'email' => 'test@netvistun.is',
@@ -22,8 +22,8 @@ return [
     'hlutir' => [
         'Page',
         //'News',
-        'Category',
-        'Product',
+        //'Category',
+        //'Product',
     ],
 
     /*

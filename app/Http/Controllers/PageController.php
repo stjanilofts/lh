@@ -45,7 +45,7 @@ class PageController extends ItemableController
                 'path' => $_p->path
             ];*/
 
-			if($k == $count)
+			if($_p && $k == $count)
 			{
 				$page = $_p;
 
