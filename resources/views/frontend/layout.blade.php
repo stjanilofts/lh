@@ -32,6 +32,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/components/lightbox.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/components/grid.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/js/components/sticky.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/freewall/1.0.5/freewall.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.15/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.js"></script>
@@ -41,10 +42,146 @@
         Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
         </script>
 
-        <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <h1>Læknahúsið</h1>
-        @yield('content')
+        <div class="uk-container uk-container-center">
+            <div class="Haus uk-margin-large-bottom uk-margin-large-top">
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-5 uk-flex uk-flex-middle uk-flex-center">
+                        <i class="uk-icon-small uk-icon-phone-square uk-margin-right"></i>563 1000
+                    </div>
+
+                    <div class="uk-width-medium-3-5 uk-text-center">
+                        <a href="/" id="logo"><img src="/img/logo.png" /></a>
+                    </div>
+
+                    <div class="uk-width-medium-1-5 uk-flex uk-flex-middle uk-flex-center">
+                        <a href="http://facebook.com" title="Facebook" class="uk-margin-right"><i class="uk-icon uk-icon-facebook-square uk-icon-small"></i></a>
+                        <a href="/veftre/" title="Veftré" class="uk-margin-right"><i class="uk-icon uk-icon-sitemap uk-icon-small"></i></a>
+                        <a href="/hafa-samband/" title="Senda fyrirspurn" class="uk-margin-right"><i class="uk-icon uk-icon-envelope-square uk-icon-small"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Menu uk-margin-large-bottom">
+                <nav class="top">
+                    {!! kalMenuBasic() !!}
+                </nav>
+            </div>
+
+            <?php
+
+            $boxes = [
+                [
+                    'size' => '2-2',
+                    'image' => '1.jpg',
+                    'title' => 'Lýtalækningar',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '2-1',
+                    'image' => '2.jpg',
+                    'title' => 'Burt með hrukkurnar',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '3.jpg',
+                    'title' => 'Æðaskurðlækningar',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '4.jpg',
+                    'title' => 'Panta tíma',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '2-2',
+                    'image' => '5.jpg',
+                    'title' => 'Almennar surðlækningar',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '6.jpg',
+                    'title' => 'Blóðtökur',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '7.jpg',
+                    'title' => 'Augnaðgerðir',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-2',
+                    'image' => '8.jpg',
+                    'title' => 'Þvagfæraskurðlækningar',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '9.jpg',
+                    'title' => 'Kviðslit',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '10.jpg',
+                    'title' => 'Starfsfólk Læknahússins',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '11.jpg',
+                    'title' => 'Handaaðgerðir',
+                    'link' => '#',
+                ],
+                [
+                    'size' => '1-1',
+                    'image' => '12.jpg',
+                    'title' => 'Æðahnútaaðgerðir',
+                    'link' => '#',
+                ],                
+            ];
+
+            ?>
+
+            @if(frontpage())
+                <div class="Boxes uk-margin-large-bottom">
+                    @foreach($boxes as $box)
+                        <div class="Box item-{{ $box['size'] }}">
+                            <div class="Box__image" style="background-image: url('/imagecache/large/{{ $box['image'] }}');">
+                            </div>
+                            <div class="Box__inner">
+                                <a class="Box__anchor" href="{{ $box['link'] }}"></a>
+                                <div class="Box__content">
+                                    <h3>{{ $box['title'] }}</h3>
+                                    <div class="Box__text">Vitað er um að nítján börn hafi verið seld mansali til Danmerkur frá árinu 2009.</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="Content uk-margin-large-bottom">
+                    <h1>@yield('title', 'Titil vantar')</h1>
+                    
+                    @yield('content')
+                </div> 
+            @endif
+
+            <div class="uk-text-center uk-margin-large-bottom uk-text-bold">
+                <hr>
+
+                &copy; Læknahúsið | Egilsgata 3, 101 Reykjavík | Sími 563 1000
+
+            </div>
+
+        </div>
+
+        <script src="/js/scripts.js"></script>
     </body>
 </html>

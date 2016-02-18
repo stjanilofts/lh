@@ -862,3 +862,67 @@ function kalCategoryMenu($parent_id = 0, $lvl = 0) {
 
     echo '</ul>';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function kalMenuBasic($parent_id = 0, $lvl = 0) {
+    $cats = \App\Page::where('parent_id', $parent_id)->get();
+
+    if( ! $cats) return;
+
+    echo '<ul>';
+
+    foreach($cats as $cat) {
+        $fullpath = $cat->fullpath();
+
+        $class = 'lvl-'.$lvl.' ';
+
+        $isActive       = Request::is(rtrim($fullpath, '/').'*') ? true : false;
+        $isBeingViewed  = Request::is(rtrim($fullpath, '/')) ? true : false;
+
+        $class .= $isActive ? 'active ' : '';
+        $class .= $isBeingViewed ? 'being-viewed ' : '';
+
+        echo '<li class="'.$class.'"><a href="/'.$fullpath.'"><span>'.$cat->title.'</span></a>';
+
+        if($isActive && $cat->getSubs()) {
+            $lvl++;
+            kalCategoryMenu($cat->id, $lvl);
+            $lvl--;
+        }
+
+        echo '</li>';
+    }
+
+    echo '</ul>';
+}
+
+
+
+
+

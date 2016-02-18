@@ -1,72 +1,102 @@
+/*! viewportSize | Author: Tyson Matanich, 2013 | License: MIT */
+(function (window) {
+
+    window.viewportSize = {};
+
+    window.viewportSize.getHeight = function () {
+        return getSize("Height");
+    };
+
+    window.viewportSize.getWidth = function () {
+        return getSize("Width");
+    };
+
+    var getSize = function (Name) {
+        var size;
+        var name = Name.toLowerCase();
+        var document = window.document;
+        var documentElement = document.documentElement;
+        if (window["inner" + Name] === undefined) {
+            // IE6 & IE7 don't have window.innerWidth or innerHeight
+            size = documentElement["client" + Name];
+        }
+        else if (window["inner" + Name] != documentElement["client" + Name]) {
+            // WebKit doesn't include scrollbars while calculating viewport size so we have to get fancy
+
+            // Insert markup to test if a media query will match document.doumentElement["client" + Name]
+            var bodyElement = document.createElement("body");
+            bodyElement.id = "vpw-test-b";
+            bodyElement.style.cssText = "overflow:scroll";
+            var divElement = document.createElement("div");
+            divElement.id = "vpw-test-d";
+            divElement.style.cssText = "position:absolute;top:-1000px";
+            // Getting specific on the CSS selector so it won't get overridden easily
+            divElement.innerHTML = "<style>@media(" + name + ":" + documentElement["client" + Name] + "px){body#vpw-test-b div#vpw-test-d{" + name + ":7px!important}}</style>";
+            bodyElement.appendChild(divElement);
+            documentElement.insertBefore(bodyElement, document.head);
+
+            if (divElement["offset" + Name] == 7) {
+                // Media query matches document.documentElement["client" + Name]
+                size = documentElement["client" + Name];
+            }
+            else {
+                // Media query didn't match, use window["inner" + Name]
+                size = window["inner" + Name];
+            }
+            // Cleanup
+            documentElement.removeChild(bodyElement);
+        }
+        else {
+            // Default to use window["inner" + Name]
+            size = window["inner" + Name];
+        }
+        return size;
+    };
+
+})(this);
+
 $(document).ready(function() {
-	/*$(function() {
-		var timer = 0;
-		var items = [];
+    var wallElement = $(".Boxes");
+    var wall = new Freewall(wallElement);
 
-		$.each($('nav.top > div'), function(i, v) {
-			if($(v).has('> div').length > 0) {
-				items.push({ el: $(v), timer: 0 });
-			}
-		});
+    var width = viewportSize.getWidth();
 
-		$.each(items, function(i, item) {
-			item.el.hover(function() {
-				clearTimeout(item.timer);
+    var gutter = 30;
+    var cell = 285;
 
-				item.el.addClass('opened');
-			}, function() {
-				item.timer = setTimeout(function() {
-					item.el.removeClass('opened');
-				}, 300);
-			});
-		});
-	});*/
+    function updateSettings(gutter, cell) {
+        wall.reset({
+            selector: '.Box',
+            gutterY: gutter,
+            gutterX: gutter,
+            cellW: cell,
+            cellH: cell,
+            fixSize: 0,
+            onResize: function() {
+                this.fitWidth()
+            }
+        })
 
-	$(window).resize(function() {
-		UIkit.offcanvas.hide([force = true])
-	});
+        wall.fitWidth();
+    }
 
+    $(window).on('resize load', function() {
+        width = viewportSize.getWidth();
+        
+        if(width <= 1219) {
+            cell = 200;
+            gutter = 15;
+        }
 
+        if(width > 1219) {
+            gutter = 30;
+            cell = 250;
+        }
 
+        updateSettings(gutter, cell);
 
+        wallElement.addClass('loaded');
+
+        wall.fitWidth();
+    });
 });
-
-/*function getWindowWidth() {
-	var windowWidth = 0;
-
-	if (typeof(window.innerWidth) == 'number') {
-		windowWidth = window.innerWidth;
-	}
-
-	else {
-		if (document.documentElement && document.documentElement.clientWidth) {
-			windowWidth = document.documentElement.clientWidth;
-		} else {
-			if (document.body && document.body.clientWidth) {
-				windowWidth = document.body.clientWidth;
-			}
-		}
-	}
-
-	return windowWidth;
-}
-
-$(document).ready(function() {
-	$menu = $('.mobile-menu');
-
-	$('a.toggle-menu').click(function() {
-		$menu.slideToggle("fast");
-	})
-
-	$(window).resize(function() {
-		var ww = getWindowWidth();
-
-		if(ww > 767) {
-			$menu.css('display', 'flex');
-		} else {
-			if($menu.is(':visible')) {
-				$menu.css('display', 'block');
-			}
-		}
-	});
-});*/

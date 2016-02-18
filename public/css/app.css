@@ -1,2 +1,242 @@
+/* Litir */
+.boxshadow, .Content, nav.top ul, .Boxes .Box {
+  box-shadow: 1px 1px 2px rgba(186, 140, 88, 0.4); }
+
+/* Settings */
+html, body {
+  background-color: #f6ebde;
+  color: #646464;
+  font-family: 'Open Sans', sans-serif !important; }
+  html a, body a {
+    color: #ba8c58;
+    transition: 0.25s ease-in-out; }
+    html a:hover, body a:hover {
+      color: #9A6A35; }
+  html h1, html h2, html h3, html h4, html h5, html h6, body h1, body h2, body h3, body h4, body h5, body h6 {
+    font-weight: 700;
+    color: #9A6A35;
+    font-family: 'Open Sans', sans-serif !important; }
+
+.Haus {
+  color: #ba8c58;
+  font-weight: 700; }
+  .Haus #logo {
+    padding: 1rem;
+    display: inline-block;
+    box-sizing: border-box; }
+    .Haus #logo img {
+      max-width: 100%; }
+  .Haus i {
+    color: #ba8c58; }
+
+.Content {
+  box-sizing: border-box;
+  background: #FFF;
+  min-height: 500px;
+  padding: 1rem; }
+
+@media (max-width: 479px) {
+  .uk-container.uk-container-center {
+    padding-left: 0px !important;
+    padding-right: 0px !important; } }
+
+@media (max-width: 1219px) {
+  .uk-container.uk-container-center {
+    padding-left: 15px;
+    padding-right: 15px; } }
+
+nav.top {
+  display: inline-block;
+  width: 100%;
+  clear: both; }
+  nav.top ul {
+    overflow: hidden;
+    background: rgba(73, 73, 73, 0.9);
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 1 1 100%;
+    -ms-flex: 1 1 100%;
+    flex: 1 1 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  nav.top li {
+    position: relative;
+    padding: 0;
+    margin: 0; }
+    nav.top li:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      height: inherit !important;
+      border-left: 1px solid rgba(137, 137, 137, 0.3); }
+    nav.top li:first-child:before {
+      /*border-right: 1px solid rgba($grey-dark, 0.3);*/
+      border: none !important; }
+    nav.top li:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: inherit !important;
+      border-right: 1px solid rgba(73, 73, 73, 0.3); }
+    nav.top li:last-child:after {
+      border-left: 1px solid rgba(137, 137, 137, 0.3); }
+  nav.top a {
+    white-space: nowrap;
+    color: #E1B98D;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: block;
+    transition: background 0.25s ease-in-out; }
+    nav.top a:hover {
+      text-decoration: none;
+      background: rgba(73, 73, 73, 0.6); }
+
+.Card {
+  position: relative;
+  position: relative;
+  outline: 1px solid red; }
+  .Card:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 56.25%; }
+  .Card--content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .Card__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    outline: 1px solid blue;
+    text-align: center;
+    padding: 1rem;
+    background: #E1B98D; }
+    .Card__title h3 {
+      padding: 0;
+      margin: 0; }
+  .Card__anchor {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 0, 0, 0.5);
+    z-index: 1;
+    transition: opacity 0.2s; }
+    .Card__anchor:hover {
+      opacity: 1; }
+
+.Boxes {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; }
+  .Boxes.loaded {
+    opacity: 1; }
+  .Boxes .Box {
+    overflow: hidden !important;
+    width: 285px;
+    height: 285px; }
+    .Boxes .Box__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      -webkit-transform: scale(1, 1);
+      transform: scale(1, 1);
+      transition: all 0.5s ease-in-out;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -ms-backface-visibility: hidden; }
+    @media (max-width: 1219px) {
+      .Boxes .Box {
+        width: 230px;
+        height: 230px; } }
+    .Boxes .Box.item-2-1 {
+      width: 570px; }
+      @media (max-width: 1219px) {
+        .Boxes .Box.item-2-1 {
+          width: 460px; } }
+    .Boxes .Box.item-1-2 {
+      height: 570px; }
+      @media (max-width: 1219px) {
+        .Boxes .Box.item-1-2 {
+          height: 460px; } }
+    .Boxes .Box.item-2-2 {
+      width: 570px;
+      height: 570px; }
+      @media (max-width: 1219px) {
+        .Boxes .Box.item-2-2 {
+          width: 460px;
+          height: 460px; } }
+    .Boxes .Box__inner {
+      position: relative;
+      width: 100%;
+      display: inline-block;
+      height: 100%; }
+    .Boxes .Box__content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(73, 73, 73, 0.9);
+      color: #E1B98D !important;
+      pointer-events: none !important; }
+      .Boxes .Box__content h3 {
+        -ms-word-break: break-word;
+        word-break: break-word;
+        word-break: break-word;
+        color: #E1B98D !important;
+        padding: 0;
+        margin: 0;
+        font-weight: 400 !important;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto; }
+    .Boxes .Box__text {
+      display: block;
+      max-height: 0;
+      font-weight: 300 !important;
+      transition: all 0.5s ease-in-out;
+      position: relative;
+      opacity: 0; }
+    .Boxes .Box:hover .Box__text {
+      max-height: 230px;
+      opacity: 1; }
+    .Boxes .Box:hover .Box__anchor {
+      opacity: 1; }
+    .Boxes .Box:hover .Box__image {
+      transition: all 0.5s ease-in-out;
+      -webkit-transform: scale(1.1, 1.1);
+      transform: scale(1.1, 1.1); }
+    .Boxes .Box__anchor {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(69, 77, 128, 0.3);
+      z-index: 1;
+      transition: opacity 0.5s ease-in-out; }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,0 +1,147 @@
+.Boxes {
+	opacity: 0;
+	transition: opacity $transition-speed;
+
+	&.loaded {
+		opacity: 1;
+	}
+
+	.Box {
+		@extend .boxshadow;
+		
+		overflow: hidden !important;
+
+		&__image {
+			@include kal-absfill();
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			-webkit-transform: scale(1, 1);
+			-moz-transform: scale(1, 1);
+			-ms-transform: scale(1, 1);
+			-o-transform: scale(1, 1);
+			transform: scale(1, 1);
+			transition: all $transition-speed;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility:    hidden;
+			-ms-backface-visibility:     hidden;
+		}
+
+	    width: 285px;
+	    height: 285px;
+
+	    @media (max-width: 1219px) {
+	    	width: 230px;
+	    	height: 230px;
+	    }
+
+		&.item-1-1 {
+		}
+
+		&.item-2-1 {
+		    width: 570px;
+		    
+		    @media (max-width: 1219px) {
+		    	width: 460px;
+		    }
+		}
+
+		&.item-1-2 {
+		    height: 570px;
+
+		    @media (max-width: 1219px) {
+		    	height: 460px;
+		    }
+		}
+
+		&.item-2-2 {
+		    width: 570px;
+		    height: 570px;
+
+		    @media (max-width: 1219px) {
+		    	width: 460px;
+		    	height: 460px;
+		    }
+		}
+
+		&__inner {
+			position: relative;
+			width: 100%;
+			display: inline-block;
+			height: 100%;
+		}
+
+		&__content {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 2;
+			text-align: center;
+			padding: 1rem;
+			background: rgba($grey-dark, 0.9);
+			color: $brown-lite !important;
+
+			h3 {
+				-ms-word-break: break-word;
+				word-break: break-word;
+				word-break: break-word;
+				color: $brown-lite !important;
+				padding: 0;
+				margin: 0;
+				font-weight: 400 !important;
+				-webkit-hyphens: auto;
+				-moz-hyphens: auto;
+				hyphens: auto;
+			}
+
+			pointer-events: none !important;
+		}
+
+		&__text {
+			display: block;
+			max-height: 0;
+			font-weight: 300 !important;
+			transition: all $transition-speed;
+			position: relative;
+			opacity: 0;
+		}
+
+		&:hover {
+			.Box__text {
+				max-height: 230px;
+				opacity: 1;
+			}
+
+			.Box__anchor {
+				opacity: 1;
+			}
+
+			.Box__image {
+				transition: all $transition-speed;
+				-webkit-transform: scale(1.1, 1.1);
+				-moz-transform: scale(1.1, 1.1);
+				-ms-transform: scale(1.1, 1.1);
+				-o-transform: scale(1.1, 1.1);
+				transform: scale(1.1, 1.1);
+			}
+		}
+
+		&__anchor {
+			opacity: 0;
+			@include kal-absfill();
+			background: rgba($blue, 0.3);
+			z-index: 1;
+			transition: opacity $transition-speed;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+

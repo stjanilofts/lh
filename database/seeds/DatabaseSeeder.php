@@ -5,10 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 use Faker\Factory;
 
 
-/*function getImages($count = 0) {
+function getImages($count = 0) {
     $images = [];
 
-    $dir = scandir(public_path('prods'));
+    $dir = scandir(public_path('img'));
 
     $repository = [];
 
@@ -47,7 +47,7 @@ use Faker\Factory;
     }
 
     return $images;
-}*/
+}
 
 
 class DatabaseSeeder extends Seeder
@@ -69,36 +69,127 @@ class DatabaseSeeder extends Seeder
             'remember_token' => str_random(10),
         ]);
 
-
-        
-        
-        /*function imgs() {
+        function imgs() {
             $_images = [];
-            for($i = 1; $i <= 16; $i++) {
+            for($i = 1; $i <= 12; $i++) {
                 $_images[] = [
-                    'name' => 'm'.$i.'.jpg',
-                    'title' => 'm'.$i.'.jpg',
+                    'name' => $i.'.jpg',
+                    'title' => $i.'.jpg',
                 ];
             }
             shuffle($_images);
             return $_images;
-        }*/
-
+        }
 
 
         $faker = Faker\Factory::create();
 
         function makePage($page = []) {
-            //dd(imgs());
             $page['slug'] = isset($page['slug']) ? $page['slug'] : str_slug($page['title']);
-            /*$page['images'] = isset($page['images']) ? $page['images'] : imgs();
-            $imgs = imgs();
-            $banner = $imgs[mt_rand(0, (count($imgs) - 1))];
-            $page['banner'] = $banner['name'];*/
-
+            $page['images'] = isset($page['images']) ? $page['images'] : imgs();
             return factory(\App\Page::class)->create($page);
         }
 
+
+        $skurdlaekningar = makePage([
+            'title' => 'Skurðlækningar',
+            'content' => 
+            '
+<p>Ýmislegt um skurðlækningar.</p>
+            ',
+        ]);
+
+
+        makePage([
+            'title' => 'Æðaskurðlækningar',
+            'parent_id' => $skurdlaekningar->id,
+            'content' => 
+            '
+<p>Æðaskurðlækningar eru sérgrein  sem greinir og meðhöndlar sjúkdóma í slagæða og bláæðakerfi.</p>
+<p>Í Læknahúsinu starfa þrír sérfræðingar í æðaskurðlækningum.</p>
+<ul>
+    <li>Guðmundur Daníelsson</li>
+    <li>Helgi Sigurðsson</li>
+    <li>Karl Logason</li>
+</ul>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Barnaskurðlækningar',
+            'parent_id' => $skurdlaekningar->id,
+            'content' => 
+            '
+<p>Í Læknahúsinu starfar einn sérfræðingur í barnaskurðlækningum.</p>
+            ',
+        ]);
+
+
+        makePage([
+            'title' => 'Almennar skurðlækningar',
+            'parent_id' => $skurdlaekningar->id,
+            'content' => 
+            '
+<p>Í Læknahúsinu eru starfandi þrír sérfræðingar í almennum skurðlækningum.</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Þvagfæraskurðlækningar',
+            'parent_id' => $skurdlaekningar->id,
+            'content' => 
+            '
+<p>Þvagfæraskurðlæknar greina og meðhöndla sjúkdóma í þvagfærum kvenna og karla og kynfærum karla.</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Lýtalækningar',
+            'content' => 
+            '
+<p>Í Læknahúsinu starfa fjórir sérfræðingar í lýta og fegrunarlækningum.</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Blóðtökur',
+            'content' => 
+            '
+<p>Efni vantar</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Augnaðgerðir',
+            'content' => 
+            '
+<p>Efni vantar</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Panta tíma',
+            'content' => 
+            '
+<p>Efni vantar</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Kviðslit',
+            'content' => 
+            '
+<p>Efni vantar</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Handaaðgerðir',
+            'content' => 
+            '
+<p>Efni vantar</p>
+            ',
+        ]);
 
         Model::reguard();
     }
