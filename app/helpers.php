@@ -895,7 +895,21 @@ function kalMenuBasic($parent_id = 0, $lvl = 0) {
 
     if( ! $cats) return;
 
-    echo '<ul>';
+    if( ! isset($output)) {
+        $output = "<ul>";
+
+        $class = "";
+
+        $isActive       = Request::is('/') ? true : false;
+        $isBeingViewed  = Request::is('/') ? true : false;
+
+        $class .= $isActive ? 'active ' : '';
+        $class .= $isBeingViewed ? 'being-viewed ' : '';
+
+        $output .= '<li class="'.$class.'"><a href="/"><i class="uk-icon-home uk-margin-right"></i>Heim</a>';
+    } else {
+        $output .= '<ul>';
+    }
 
     foreach($cats as $cat) {
         $fullpath = $cat->fullpath();
@@ -908,7 +922,7 @@ function kalMenuBasic($parent_id = 0, $lvl = 0) {
         $class .= $isActive ? 'active ' : '';
         $class .= $isBeingViewed ? 'being-viewed ' : '';
 
-        echo '<li class="'.$class.'"><a href="/'.$fullpath.'"><span>'.$cat->title.'</span></a>';
+        $output .= '<li class="'.$class.'"><a href="/'.$fullpath.'"><span>'.$cat->title.'</span></a>';
 
         if($isActive && $cat->getSubs()) {
             $lvl++;
@@ -916,10 +930,12 @@ function kalMenuBasic($parent_id = 0, $lvl = 0) {
             $lvl--;
         }
 
-        echo '</li>';
+        $output .= '</li>';
     }
 
-    echo '</ul>';
+    $output .= '</ul>';
+
+    return $output;
 }
 
 

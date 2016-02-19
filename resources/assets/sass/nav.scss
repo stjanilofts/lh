@@ -50,6 +50,12 @@ nav {
 
 			padding: 0;
 			margin: 0;
+
+			&.active, &.being_viewed {
+				a {
+					background: rgba($grey-dark, 0.6);
+				}
+			}
 		}
 
 		a {

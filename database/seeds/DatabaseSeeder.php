@@ -99,6 +99,21 @@ class DatabaseSeeder extends Seeder
             ',
         ]);
 
+        $adgerdir = makePage([
+            'title' => 'Aðgerðir',
+            'content' => 
+            '
+<p>Ýmislegt um aðgerðir.</p>
+            ',
+        ]);
+
+        $ymislegt = makePage([
+            'title' => 'Ýmislegt',
+            'content' => 
+            '
+<p>Ýmislegt.</p>
+            ',
+        ]);
 
         makePage([
             'title' => 'Æðaskurðlækningar',
@@ -145,6 +160,7 @@ class DatabaseSeeder extends Seeder
 
         makePage([
             'title' => 'Lýtalækningar',
+            'parent_id' => $ymislegt->id,
             'content' => 
             '
 <p>Í Læknahúsinu starfa fjórir sérfræðingar í lýta og fegrunarlækningum.</p>
@@ -153,6 +169,7 @@ class DatabaseSeeder extends Seeder
 
         makePage([
             'title' => 'Blóðtökur',
+            'parent_id' => $ymislegt->id,
             'content' => 
             '
 <p>Efni vantar</p>
@@ -161,6 +178,7 @@ class DatabaseSeeder extends Seeder
 
         makePage([
             'title' => 'Augnaðgerðir',
+            'parent_id' => $adgerdir->id,
             'content' => 
             '
 <p>Efni vantar</p>
@@ -177,6 +195,7 @@ class DatabaseSeeder extends Seeder
 
         makePage([
             'title' => 'Kviðslit',
+            'parent_id' => $ymislegt->id,
             'content' => 
             '
 <p>Efni vantar</p>
@@ -185,6 +204,7 @@ class DatabaseSeeder extends Seeder
 
         makePage([
             'title' => 'Handaaðgerðir',
+            'parent_id' => $adgerdir->id,
             'content' => 
             '
 <p>Efni vantar</p>
