@@ -80,9 +80,11 @@ $(document).ready(function() {
         wall.fitWidth();
     }
 
+
     $(window).on('resize load', function() {
         width = viewportSize.getWidth();
-        
+
+        // boxes        
         if(width <= 1219) {
             cell = 200;
             gutter = 15;
@@ -99,4 +101,13 @@ $(document).ready(function() {
 
         wall.fitWidth();
     });
+
+    $(window).resize(function() {
+        // nav
+        if(width < 960) {
+            $('ul.menulist').hide();
+        } else {
+            $('nav.top ul.main-menu').show();
+        }
+    })
 });

@@ -926,7 +926,7 @@ function kalMenuBasic($parent_id = 0, $lvl = 0) {
 
         if($isActive && $cat->getSubs()) {
             $lvl++;
-            kalCategoryMenu($cat->id, $lvl);
+            kalMenuBasic($cat->id, $lvl);
             $lvl--;
         }
 
@@ -940,5 +940,64 @@ function kalMenuBasic($parent_id = 0, $lvl = 0) {
 
 
 
+
+
+
+
+function kalMenuBasicAll($parent_id = 0, $lvl = 0) {
+    $pages = \App\Page::where('parent_id', $parent_id)->get();
+
+    if( ! $pages) return "";
+
+    if( !isset($output) && $lvl == 0) {
+        $output = "<ul class='main-menu'>";
+
+        $class = "";
+
+        $isActive       = Request::is('/') ? true : false;
+        $isBeingViewed  = Request::is('/') ? true : false;
+
+        $class .= $isActive ? 'active ' : '';
+        $class .= $isBeingViewed ? 'being-viewed ' : '';
+
+        $output .= '<li class="'.$class.' menuitem"><a href="/"><i class="uk-icon-home uk-margin-right"></i>Heim</a></li>';
+    } else {
+        $output = '<ul class="menulist">';
+    }
+
+    foreach($pages as $page) {
+        $fullpath = $page->fullpath();
+
+        $class = 'lvl-'.$lvl.' ';
+
+        $isActive       = Request::is(rtrim($fullpath, '/').'*') ? true : false;
+        $isBeingViewed  = Request::is(rtrim($fullpath, '/')) ? true : false;
+
+        $class .= $isActive ? 'active ' : '';
+        $class .= $isBeingViewed ? 'being-viewed ' : '';
+
+        $hasSubs = $page->hasSubs();
+
+        $open = '';
+
+        if($hasSubs) {
+            $open .= '<span class="open"><i class="uk-icon-caret-square-o-down uk-icon-small"></i></span>';
+        }
+
+        $output .= '<li class="'.$class.'"><a href="/'.$fullpath.'"><span>'.$page->title.'</span></a>'.$open;
+
+        if($hasSubs) {
+            $lvl++;
+            $output .= kalMenuBasicAll($page->id, $lvl);
+            $lvl--;
+        }
+
+        $output .= '</li>';
+    }
+
+    $output .= '</ul>';
+
+    return $output;
+}
 
 

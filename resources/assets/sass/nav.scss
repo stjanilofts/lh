@@ -1,22 +1,122 @@
 nav {
 	&.top {
+		position: relative;
+		z-index: 100;
 		display: inline-block;
 		width: 100%;
 		clear: both;
 
-		ul {
-			overflow: hidden;
-			background: rgba($grey-dark, 0.9);
+		> ul {
 			@extend .boxshadow;
-			display: flex;
-			flex: 1 1 100%;
+		}
+
+		span.open {
+			display: none;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			/*border-left: 1px solid rgba($grey-lite2, 0.1);
+			border-bottom: 1px solid rgba($grey-lite2, 0.1);*/
+			padding: 1rem;
+		}
+
+		@media (max-width: 959px) {
+			span.open {
+				display: block;
+				z-index: 200;
+				cursor: pointer;
+			}
+
+			> ul {
+				ul {
+					display: none;
+				}
+			}
+
+			ul {
+				flex: 0;
+				display: block;
+				li {
+					display: block;
+					ul {
+						> ul {
+							display: none;
+						}
+						display: none;
+						position: relative;
+						border-bottom-left-radius: 0px !important;
+						border-bottom-right-radius: 0px !important;
+
+						li {
+							a {
+								text-align: center;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ul {
+			/*overflow: hidden;*/
+			background: rgba($grey-dark, 0.6);
+			@media (min-width: 960px) {
+				display: flex;
+				flex: 1 1 100%;
+			}
+
 			list-style: none;
 			padding: 0;
 			margin: 0;
 		}
 
 		li {
+			display: inline-block;
 			position: relative;
+
+			ul {
+				border-left: 1px solid rgba($grey-lite, 0.15);
+				border-right: 1px solid rgba($grey-dark, 0.15);
+				display: none;
+				position: absolute;
+				border-bottom-left-radius: $radius !important;
+				border-bottom-right-radius: $radius  !important;
+				overflow: hidden;
+
+				li {
+					display: block;
+
+					@media (min-width: 960px) {
+						ul {
+							visibility: hidden;
+						}
+					}
+
+					a {
+						font-weight: 400 !important;
+						font-size: 0.75rem;
+						padding: 0.75rem;
+						display: block;
+						text-align: left;
+					}
+
+					&:last-child:after,
+					&:first-child:before,
+					&:before,
+					&:after {
+						border: none !important;
+					}
+				}
+			}
+
+			@media (min-width: 960px) {
+				&:hover {
+					ul {
+						display: inline-block !important;
+					}
+				}
+			}
 
 			&:before {
 				content: "";
@@ -25,7 +125,7 @@ nav {
 				top: 0;
 				bottom: 0;
 				height: inherit !important;
-				border-left: 1px solid rgba($grey-lite, 0.3);
+				border-left: 1px solid rgba($grey-lite, 0.15);
 			}
 
 			&:first-child:before {
@@ -41,18 +141,18 @@ nav {
 				top: 0;
 				bottom: 0;
 				height: inherit !important;
-				border-right: 1px solid rgba($grey-dark, 0.3);
+				border-right: 1px solid rgba($grey-dark, 0.15);
 			}
 
 			&:last-child:after {
-				border-left: 1px solid rgba($grey-lite, 0.3);
+				border-left: 1px solid rgba($grey-lite, 0.15);
 			}
 
 			padding: 0;
 			margin: 0;
 
 			&.active, &.being_viewed {
-				a {
+				> a {
 					background: rgba($grey-dark, 0.6);
 				}
 			}
@@ -60,8 +160,8 @@ nav {
 
 		a {
 			white-space: nowrap;
-			color: $brown-lite;
-			font-weight: 400;
+			color: $grey-lite2;
+			font-weight: 700;
 			text-align: center;
 			text-transform: uppercase;
 			box-sizing: border-box;

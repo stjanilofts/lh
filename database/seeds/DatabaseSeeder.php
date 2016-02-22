@@ -130,12 +130,30 @@ class DatabaseSeeder extends Seeder
             ',
         ]);
 
-        makePage([
+        $barna = makePage([
             'title' => 'Barnaskurðlækningar',
             'parent_id' => $skurdlaekningar->id,
             'content' => 
             '
 <p>Í Læknahúsinu starfar einn sérfræðingur í barnaskurðlækningum.</p>
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Test 1',
+            'parent_id' => $barna->id,
+            'content' => 
+            '
+            Test 1
+            ',
+        ]);
+
+        makePage([
+            'title' => 'Test 2',
+            'parent_id' => $barna->id,
+            'content' => 
+            '
+            Test 2
             ',
         ]);
 

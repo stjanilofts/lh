@@ -66,8 +66,34 @@
 
             <div class="Menu uk-margin-large-bottom">
                 <nav class="top">
-                    {!! kalMenuBasic() !!}
+                    <ul>   
+                        <li class="uk-hidden-large mobile-button"><a><i class="uk-icon-bars uk-margin-right"></i>Meira</a></li>
+
+                        {!! kalMenuBasicAll() !!}
+                    </ul>
                 </nav>
+                <script>
+                $(document).ready(function() {
+                    $('li.mobile-button a').click(function() {
+                        $(this).parents('li').next('ul').slideToggle();
+                    });
+                    
+                    $('span.open').click(function() {
+                        var ctx = $(this);
+                        var sub = ctx.parent('li').find('> ul');
+
+                        sub.slideToggle('fast', function() {
+                            if(sub.is(':visible')) {
+                                ctx.find('i').removeClass('uk-icon-caret-square-o-down');
+                                ctx.find('i').addClass('uk-icon-caret-square-o-up');
+                            } else {
+                                ctx.find('i').removeClass('uk-icon-caret-square-o-up');
+                                ctx.find('i').addClass('uk-icon-caret-square-o-down');
+                            }
+                        });
+                    })
+                })
+                </script>
             </div>
 
             <?php
@@ -158,7 +184,7 @@
                             <div class="Box__inner">
                                 <a class="Box__anchor" href="{{ $box['link'] }}"></a>
                                 <div class="Box__content">
-                                    <h3>{{ $box['title'] }}</h3>
+                                    <h4>{{ $box['title'] }}</h4>
                                     <div class="Box__text">Vitað er um að nítján börn hafi verið seld mansali til Danmerkur frá árinu 2009.</div>
                                 </div>
                             </div>

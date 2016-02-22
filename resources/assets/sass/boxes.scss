@@ -79,17 +79,19 @@
 			z-index: 2;
 			text-align: center;
 			padding: 1rem;
-			background: rgba($grey-dark, 0.9);
-			color: $brown-lite !important;
+			background: rgba($grey-dark, 0.6);
+			//color: $brown-lite !important;
+			color: $grey-lite2;
 
-			h3 {
+			h4 {
 				-ms-word-break: break-word;
 				word-break: break-word;
 				word-break: break-word;
-				color: $brown-lite !important;
+				//color: $brown-lite !important;
+				color: $grey-lite2;
 				padding: 0;
 				margin: 0;
-				font-weight: 400 !important;
+				font-weight: 700 !important;
 				-webkit-hyphens: auto;
 				-moz-hyphens: auto;
 				hyphens: auto;
@@ -130,7 +132,7 @@
 		&__anchor {
 			opacity: 0;
 			@include kal-absfill();
-			background: rgba($blue, 0.3);
+			background: rgba($blue, 0.6);
 			z-index: 1;
 			transition: opacity $transition-speed;
 		}
