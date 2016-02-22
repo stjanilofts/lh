@@ -79,7 +79,7 @@
 			z-index: 2;
 			text-align: center;
 			padding: 1rem;
-			background: rgba($grey-dark, 0.6);
+			background: rgba($grey-dark, 0.8);
 			//color: $brown-lite !important;
 			color: $grey-lite2;
 
@@ -132,7 +132,7 @@
 		&__anchor {
 			opacity: 0;
 			@include kal-absfill();
-			background: rgba($blue, 0.6);
+			background: rgba($blue, 0.4);
 			z-index: 1;
 			transition: opacity $transition-speed;
 		}

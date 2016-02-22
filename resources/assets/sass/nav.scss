@@ -60,7 +60,7 @@ nav {
 
 		ul {
 			/*overflow: hidden;*/
-			background: rgba($grey-dark, 0.6);
+			background: rgba($grey-dark, 0.8);
 			@media (min-width: 960px) {
 				display: flex;
 				flex: 1 1 100%;
@@ -82,7 +82,6 @@ nav {
 				position: absolute;
 				border-bottom-left-radius: $radius !important;
 				border-bottom-right-radius: $radius  !important;
-				overflow: hidden;
 
 				li {
 					display: block;
@@ -153,7 +152,7 @@ nav {
 
 			&.active, &.being_viewed {
 				> a {
-					background: rgba($grey-dark, 0.6);
+					background: rgba($grey-dark, 0.8);
 				}
 			}
 		}
@@ -171,7 +170,7 @@ nav {
 
 			&:hover {
 				text-decoration: none;
-				background: rgba($grey-dark, 0.6);
+				background: rgba($grey-dark, 0.8);
 			}
 		}
 	}

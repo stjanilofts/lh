@@ -89,7 +89,7 @@ nav.top {
             text-align: center; } }
   nav.top ul {
     /*overflow: hidden;*/
-    background: rgba(73, 73, 73, 0.6);
+    background: rgba(73, 73, 73, 0.8);
     list-style: none;
     padding: 0;
     margin: 0; }
@@ -112,8 +112,7 @@ nav.top {
       display: none;
       position: absolute;
       border-bottom-left-radius: 6px !important;
-      border-bottom-right-radius: 6px !important;
-      overflow: hidden; }
+      border-bottom-right-radius: 6px !important; }
       nav.top li ul li {
         display: block; }
         @media (min-width: 960px) {
@@ -152,7 +151,7 @@ nav.top {
     nav.top li:last-child:after {
       border-left: 1px solid rgba(137, 137, 137, 0.15); }
     nav.top li.active > a, nav.top li.being_viewed > a {
-      background: rgba(73, 73, 73, 0.6); }
+      background: rgba(73, 73, 73, 0.8); }
   nav.top a {
     white-space: nowrap;
     color: #e2e2e2;
@@ -165,7 +164,7 @@ nav.top {
     transition: background 0.25s ease-in-out; }
     nav.top a:hover {
       text-decoration: none;
-      background: rgba(73, 73, 73, 0.6); }
+      background: rgba(73, 73, 73, 0.8); }
 
 .Card {
   position: relative;
@@ -265,7 +264,7 @@ nav.top {
       z-index: 2;
       text-align: center;
       padding: 1rem;
-      background: rgba(73, 73, 73, 0.6);
+      background: rgba(73, 73, 73, 0.8);
       color: #e2e2e2;
       pointer-events: none !important; }
       .Boxes .Box__content h4 {
@@ -302,7 +301,7 @@ nav.top {
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(69, 77, 128, 0.6);
+      background: rgba(69, 77, 128, 0.4);
       z-index: 1;
       transition: opacity 0.5s ease-in-out; }
 
