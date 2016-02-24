@@ -85,7 +85,7 @@ class PageController extends ItemableController
         $item->save();
 
         if($item->parent_id) {
-            return redirect()->to('/admin/page/'.$item->parent_id.'/subs');
+            return redirect()->to('/admin/page/subs/'.$item->parent_id);
         }
 
         return redirect()->action($item->modelName().'Controller@index');
